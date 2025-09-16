@@ -6,17 +6,17 @@ function ThemePanel() {
   const [mode, setMode] = useState(
     localStorage && typeof localStorage.appMode !== "undefined"
       ? localStorage.appMode
-      : "dark",
+      : "dark"
   );
   const [theme, setTheme] = useState(
     localStorage && typeof localStorage.appTheme !== "undefined"
       ? localStorage.appTheme
-      : "theme-teal",
+      : "theme-teal"
   );
   const [cover, setCover] = useState(
     localStorage && typeof localStorage.appCover !== "undefined"
       ? localStorage.appCover
-      : "",
+      : ""
   );
 
   const toggleAppThemePanel = (event) => {
@@ -83,8 +83,8 @@ function ThemePanel() {
   };
 
   const modeList = [
-    { name: "Dark", img: "/assets/img/mode/dark.jpg", value: "dark" },
-    { name: "Light", img: "/assets/img/mode/light.jpg", value: "light" },
+    { name: "تیره", img: "/assets/img/mode/dark.jpg", value: "dark" },
+    { name: "روشن", img: "/assets/img/mode/light.jpg", value: "light" },
   ];
 
   const themeList = [
@@ -161,7 +161,7 @@ function ThemePanel() {
           <i className="bi bi-sliders"></i>
         </a>
         <div className="app-theme-panel-content">
-          <div className="small fw-bold text-inverse mb-1">Display Mode</div>
+          <div className="small fw-bold text-inverse mb-1">حالت نمایش</div>
           <Card className="mb-3">
             <CardBody className="p-2">
               <div className="row gx-2">
@@ -192,7 +192,9 @@ function ThemePanel() {
               </div>
             </CardBody>
           </Card>
-          <div className="small fw-bold text-inverse mb-1">Theme Color</div>
+          <div className="small fw-bold text-inverse mb-1">
+            تنظیم رنگ نرم‌افزار
+          </div>
           <Card className="mb-3">
             <CardBody className="p-2">
               <div className="app-theme-list">
@@ -221,7 +223,7 @@ function ThemePanel() {
             </CardBody>
           </Card>
 
-          <div className="small fw-bold text-inverse mb-1">Theme Cover</div>
+          <div className="small fw-bold text-inverse mb-1">تصویر پس‌زمینه</div>
           <Card>
             <CardBody className="p-2">
               <div className="app-theme-cover">
