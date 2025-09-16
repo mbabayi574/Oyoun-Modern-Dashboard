@@ -6,28 +6,28 @@ function Header() {
   const notificationData = [
     {
       icon: "bi bi-bag text-theme",
-      title: "NEW ORDER RECEIVED ($1,299)",
-      time: "JUST NOW",
+      title: "سفارش جدید دریافتی (۱,۲۹۹ تومان)",
+      time: "اکنون",
     },
     {
       icon: "bi bi-person-circle text-theme",
-      title: "3 NEW ACCOUNT CREATED",
-      time: "2 MINUTES AGO",
+      title: "۳ حساب کاربری جدید ساخته شد",
+      time: "۲ دقیقه قبل",
     },
     {
       icon: "bi bi-gear text-theme",
-      title: "SETUP COMPLETED",
-      time: "3 MINUTES AGO",
+      title: "نصب کامل شد",
+      time: "۳۰ دقیقه قبل",
     },
     {
       icon: "bi bi-grid text-theme",
-      title: "WIDGET INSTALLATION DONE",
-      time: "5 MINUTES AGO",
+      title: "ابزارک تلگرام فعال شد",
+      time: "۳ روز قبل",
     },
     {
       icon: "bi bi-credit-card text-theme",
-      title: "PAYMENT METHOD ENABLED",
-      time: "10 MINUTES AGO",
+      title: "روش پرداختی جدید فعال شد",
+      time: "۱ ماه قبل",
     },
   ];
 
@@ -99,9 +99,9 @@ function Header() {
       <div className="brand">
         <Link to="/" className="brand-logo">
           <span className="brand-img">
-            <span className="brand-img-text text-theme">H</span>
+            <span className="brand-img-text text-theme">ع</span>
           </span>
-          <span className="brand-text">HUD ADMIN</span>
+          <span className="brand-text">نرم‌افزار عیون</span>
         </Link>
       </div>
 
@@ -124,7 +124,7 @@ function Header() {
               <i className="bi bi-grid-3x3-gap nav-icon"></i>
             </div>
           </a>
-          <div className="dropdown-menu fade dropdown-menu-end w-300px text-center p-0 mt-1">
+          <div className="dropdown-menu fade dropdown-menu-start w-300px text-center p-0 mt-1">
             <div className="row row-grid gx-0">
               <div className="col-4">
                 <Link
@@ -135,7 +135,7 @@ function Header() {
                     <i className="bi bi-circle-fill position-absolute text-theme top-0 mt-n2 me-n2 fs-6px d-block text-center w-100"></i>
                     <i className="bi bi-envelope h2 opacity-5 d-block my-1"></i>
                   </div>
-                  <div className="fw-500 fs-10px text-inverse">INBOX</div>
+                  <div className="fw-500 fs-10px text-inverse">صندوق ورودی</div>
                 </Link>
               </div>
               <div className="col-4">
@@ -146,7 +146,7 @@ function Header() {
                   <div>
                     <i className="bi bi-hdd-network h2 opacity-5 d-block my-1"></i>
                   </div>
-                  <div className="fw-500 fs-10px text-inverse">POS SYSTEM</div>
+                  <div className="fw-500 fs-10px text-inverse">دستگاه پوز</div>
                 </Link>
               </div>
               <div className="col-4">
@@ -157,7 +157,7 @@ function Header() {
                   <div>
                     <i className="bi bi-calendar4 h2 opacity-5 d-block my-1"></i>
                   </div>
-                  <div className="fw-500 fs-10px text-inverse">CALENDAR</div>
+                  <div className="fw-500 fs-10px text-inverse">تقویم</div>
                 </Link>
               </div>
             </div>
@@ -170,7 +170,7 @@ function Header() {
                   <div>
                     <i className="bi bi-terminal h2 opacity-5 d-block my-1"></i>
                   </div>
-                  <div className="fw-500 fs-10px text-inverse">HELPER</div>
+                  <div className="fw-500 fs-10px text-inverse">ترمینال</div>
                 </Link>
               </div>
               <div className="col-4">
@@ -182,7 +182,7 @@ function Header() {
                     <i className="bi bi-circle-fill position-absolute text-theme top-0 mt-n2 me-n2 fs-6px d-block text-center w-100"></i>
                     <i className="bi bi-sliders h2 opacity-5 d-block my-1"></i>
                   </div>
-                  <div className="fw-500 fs-10px text-inverse">SETTINGS</div>
+                  <div className="fw-500 fs-10px text-inverse">تنظیمات</div>
                 </Link>
               </div>
               <div className="col-4">
@@ -193,7 +193,7 @@ function Header() {
                   <div>
                     <i className="bi bi-collection-play h2 opacity-5 d-block my-1"></i>
                   </div>
-                  <div className="fw-500 fs-10px text-inverse">WIDGETS</div>
+                  <div className="fw-500 fs-10px text-inverse">ابزارک‌ها</div>
                 </Link>
               </div>
             </div>
@@ -211,8 +211,10 @@ function Header() {
             </div>
             <div className="menu-badge bg-theme"></div>
           </a>
-          <div className="dropdown-menu dropdown-menu-end mt-1 w-300px fs-11px pt-1">
-            <h6 className="dropdown-header fs-10px mb-1">NOTIFICATIONS</h6>
+          <div className="dropdown-menu dropdown-menu-start mt-1 w-300px fs-11px pt-1">
+            <h6 className="dropdown-header fs-10px mb-1 text-start">
+              اطلاعیه‌ها
+            </h6>
             <div className="dropdown-divider mt-1"></div>
             {notificationData.length > 0 ? (
               notificationData.map((notification, index) => (
@@ -224,7 +226,7 @@ function Header() {
                   <div className="fs-20px">
                     <i className={notification.icon}></i>
                   </div>
-                  <div className="flex-1 flex-wrap ps-3">
+                  <div className="flex-1 flex-wrap ps-3 text-start">
                     <div className="mb-1 text-inverse">
                       {notification.title}
                     </div>
@@ -233,7 +235,7 @@ function Header() {
                     </div>
                   </div>
                   <div className="ps-2 fs-16px">
-                    <i className="bi bi-chevron-right"></i>
+                    <i className="bi bi-chevron-left"></i>
                   </div>
                 </a>
               ))
@@ -245,7 +247,7 @@ function Header() {
             <hr className="mb-0 mt-2" />
             <div className="py-10px mb-n2 text-center">
               <a href="#/" className="text-decoration-none fw-bold">
-                SEE ALL
+                دیدن همه
               </a>
             </div>
           </div>
@@ -268,33 +270,33 @@ function Header() {
               username@account.com
             </div>
           </a>
-          <div className="dropdown-menu dropdown-menu-end me-lg-3 fs-11px mt-1">
+          <div className="dropdown-menu dropdown-menu-start me-lg-3 fs-11px mt-1">
             <Link
               to="/profile"
               className="dropdown-item d-flex align-items-center"
             >
-              PROFILE{" "}
+              پروفایل{" "}
               <i className="bi bi-person-circle ms-auto text-theme fs-16px my-n1"></i>
             </Link>
             <Link
               to="/email/inbox"
               className="dropdown-item d-flex align-items-center"
             >
-              INBOX{" "}
+              صندوق ورودی{" "}
               <i className="bi bi-envelope ms-auto text-theme fs-16px my-n1"></i>
             </Link>
             <Link
               to="/calendar"
               className="dropdown-item d-flex align-items-center"
             >
-              CALENDAR{" "}
+              تقویم{" "}
               <i className="bi bi-calendar ms-auto text-theme fs-16px my-n1"></i>
             </Link>
             <Link
               to="/settings"
               className="dropdown-item d-flex align-items-center"
             >
-              SETTINGS{" "}
+              تنظیمات{" "}
               <i className="bi bi-gear ms-auto text-theme fs-16px my-n1"></i>
             </Link>
             <div className="dropdown-divider"></div>
@@ -302,7 +304,7 @@ function Header() {
               to="/pages/login"
               className="dropdown-item d-flex align-items-center"
             >
-              LOGOUT{" "}
+              خروج{" "}
               <i className="bi bi-toggle-off ms-auto text-theme fs-16px my-n1"></i>
             </Link>
           </div>
@@ -318,7 +320,7 @@ function Header() {
             <input
               type="text"
               className="form-control form-control-lg"
-              placeholder="Search menu..."
+              placeholder="جستجو کنید"
             />
           </div>
           <div className="menu-search-icon">
