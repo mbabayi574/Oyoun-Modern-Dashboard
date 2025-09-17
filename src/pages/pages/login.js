@@ -1,6 +1,7 @@
 import React, { useEffect, useContext, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { AppSettings } from "./../../config/app-settings.js";
+import { axiosPost } from "../../utils/Axios Utils/Utils.js";
 
 function PagesLogin() {
   const context = useContext(AppSettings);
@@ -20,9 +21,24 @@ function PagesLogin() {
     // eslint-disable-next-line
   }, []);
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
 
+    const formData = new FormData(event.currentTarget);
+    const username = formData.get("username");
+    const password = formData.get("password");
+    console.log("Username:", username);
+    console.log("Password:", password);
+
+    const result = await axiosPost("/api/token/", {
+      username: username,
+      password: password,
+    });
+
+    console.log("Login result:", result);
+
+    localStorage.setItem("access_token", result.access);
+    localStorage.setItem("refresh_token", result.refresh);
     setRedirect(true);
   }
 
@@ -39,10 +55,12 @@ function PagesLogin() {
           </div>
           <div className="mb-3">
             <label className="form-label">
-              آدرس ایمیل <span className="text-danger">*</span>
+              نام کاربری <span className="text-danger">*</span>
             </label>
             <input
               type="text"
+              id="username"
+              name="username"
               className="form-control form-control-lg bg-white bg-opacity-5"
               placeholder=""
             />
@@ -61,6 +79,8 @@ function PagesLogin() {
             </div>
             <input
               type="password"
+              id="password"
+              name="password"
               className="form-control form-control-lg bg-white bg-opacity-5"
               placeholder=""
             />
