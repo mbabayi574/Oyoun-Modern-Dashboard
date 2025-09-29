@@ -43,7 +43,7 @@ function PagesLogin() {
   }
 
   if (redirect) {
-    return <Navigate to="/" />;
+    return <Navigate to="/landing" />;
   }
   return (
     <div className="login">

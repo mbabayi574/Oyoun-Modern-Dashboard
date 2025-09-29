@@ -23,25 +23,25 @@ function App() {
     appTopNav: false,
   };
   const [appHeaderNone, setAppHeaderNone] = useState(
-    defaultOptions.appHeaderNone,
+    defaultOptions.appHeaderNone
   );
   const [appSidebarNone, setAppSidebarNone] = useState(
-    defaultOptions.appSidebarNone,
+    defaultOptions.appSidebarNone
   );
   const [appSidebarCollapsed, setAppSidebarCollapsed] = useState(
-    defaultOptions.appSidebarCollapsed,
+    defaultOptions.appSidebarCollapsed
   );
   const [appContentNone, setAppContentNone] = useState(
-    defaultOptions.appContentNone,
+    defaultOptions.appContentNone
   );
   const [appContentClass, setAppContentClass] = useState(
-    defaultOptions.appContentClass,
+    defaultOptions.appContentClass
   );
   const [appContentFullHeight, setAppContentFullHeight] = useState(
-    defaultOptions.appContentFullHeight,
+    defaultOptions.appContentFullHeight
   );
   const [appBoxedLayout, setAppBoxedLayout] = useState(
-    defaultOptions.appBoxedLayout,
+    defaultOptions.appBoxedLayout
   );
   const [appFooter, setAppFooter] = useState(defaultOptions.appFooter);
   const [appTopNav, setAppTopNav] = useState(defaultOptions.appTopNav);
@@ -68,11 +68,9 @@ function App() {
           document.body.classList.remove(document.body.classList[x]);
         }
       }
-
       if (localStorage && value) {
         localStorage.appTheme = value;
       }
-
       document.body.classList.add(newTheme);
       document.dispatchEvent(new Event("theme-reload"));
     }

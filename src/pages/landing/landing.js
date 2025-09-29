@@ -3,11 +3,21 @@ import { Link } from "react-router-dom";
 import { Card, CardBody } from "./../../components/card/card.jsx";
 import { AppSettings } from "./../../config/app-settings.js";
 import { Icon } from "@iconify/react";
+import { axiosGet } from "../../utils/Axios Utils/Utils.js";
+import { API_URL } from "../../utils/Axios Utils/config.js";
 
 function Landing() {
   const context = useContext(AppSettings);
+  const [apps, setApps] = React.useState([]);
+
+  async function get_APPS() {
+    const result = await axiosGet("/api/dashboards/landing/");
+    console.log("Landing Apps:", result.data.data);
+    setApps(result.data.data);
+  }
 
   useEffect(() => {
+    get_APPS();
     context.setAppHeaderNone(true);
     context.setAppSidebarNone(true);
     context.setAppContentClass("p-0");
@@ -130,6 +140,35 @@ function Landing() {
               </div>
             </div>
           </div>
+          <div className="container-xxl px-3 px-lg-5">
+            <hr className="opacity-4 m-0" />
+          </div>
+          {apps.length !== 0 &&
+            apps.map((section) => (
+              <>
+                <div className="text-center mb-5">
+                  <h1 className="mb-3">{section.name}</h1>
+                </div>
+                <div className="row g-3 g-lg-5">
+                  {section.menus.length > 0 &&
+                    section.menus.map((menu) => (
+                      <div className="col-xl-3 col-lg-4 col-sm-6">
+                        <img
+                          src={menu.image_url}
+                          className="shadow d-block mw-100 cursor-pointer"
+                          onClick={() => console.log("Clicked")}
+                        />
+                        <div className="text-center my-3 text-body fw-bold">
+                          {menu.name}
+                        </div>
+                      </div>
+                    ))}
+                </div>
+                <div className="container-xxl px-3 px-lg-5">
+                  <hr className="opacity-4 m-0" />
+                </div>
+              </>
+            ))}
         </div>
       </div>
 
