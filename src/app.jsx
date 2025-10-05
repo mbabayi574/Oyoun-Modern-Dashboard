@@ -6,6 +6,7 @@ import Content from "./components/content/content.jsx";
 import Footer from "./components/footer/footer.jsx";
 import ThemePanel from "./components/theme-panel/theme-panel.jsx";
 import { AppSettings } from "./config/app-settings.js";
+import { MenuProvider } from "./config/app-menu.jsx";
 
 function App() {
   var defaultOptions = {
@@ -127,25 +128,27 @@ function App() {
 
   return (
     <AppSettings.Provider value={providerValue}>
-      <div
-        className={
-          "app " +
-          (appBoxedLayout ? "app-boxed-layout " : "") +
-          (appContentFullHeight ? "app-content-full-height " : "") +
-          (appHeaderNone ? "app-without-header " : "") +
-          (appSidebarNone ? "app-without-sidebar " : "") +
-          (appSidebarCollapsed ? "app-sidebar-collapsed " : "") +
-          (appFooter ? "app-footer-fixed " : "") +
-          (appTopNav ? "app-with-top-nav " : "")
-        }
-      >
-        {!appHeaderNone && <Header />}
-        {appTopNav && <TopNav />}
-        {!appSidebarNone && <Sidebar />}
-        {!appContentNone && <Content className={appContentClass} />}
-        {appFooter && <Footer />}
-        <ThemePanel />
-      </div>
+      <MenuProvider>
+        <div
+          className={
+            "app " +
+            (appBoxedLayout ? "app-boxed-layout " : "") +
+            (appContentFullHeight ? "app-content-full-height " : "") +
+            (appHeaderNone ? "app-without-header " : "") +
+            (appSidebarNone ? "app-without-sidebar " : "") +
+            (appSidebarCollapsed ? "app-sidebar-collapsed " : "") +
+            (appFooter ? "app-footer-fixed " : "") +
+            (appTopNav ? "app-with-top-nav " : "")
+          }
+        >
+          {!appHeaderNone && <Header />}
+          {appTopNav && <TopNav />}
+          {!appSidebarNone && <Sidebar />}
+          {!appContentNone && <Content className={appContentClass} />}
+          {appFooter && <Footer />}
+          <ThemePanel />
+        </div>
+      </MenuProvider>
     </AppSettings.Provider>
   );
 }

@@ -1,4 +1,7 @@
-const Menu = [
+import React, { createContext, useState, useContext, useEffect } from "react";
+import { axiosPost } from "../utils/Axios Utils/Utils";
+
+const initialMenuData = [
   { is_header: true, title: "ناوبری" },
   { path: "/dashboard", icon: "bi bi-cpu", title: "داشبورد" },
   { path: "/analytics", icon: "bi bi-bar-chart", title: "آمار" },
@@ -130,4 +133,87 @@ const Menu = [
   { path: "/helper", icon: "bi bi-gem", title: "راهنما" },
 ];
 
-export default Menu;
+// Function to map API data to Menu format
+const mapApiDataToMenu = (apiData) => {
+  return apiData.map((item) => {
+    const menuItem = {
+      path: item.path,
+      icon: item.icon,
+      title: item.title,
+    };
+
+    // Add children if they exist and are not empty
+    if (item.children && item.children.length > 0) {
+      menuItem.children = item.children.map((child) => ({
+        path: child.path,
+        title: child.title,
+        icon: child.icon,
+        // Recursively handle nested children if needed
+        ...(child.children &&
+          child.children.length > 0 && {
+            children: child.children.map((grandChild) => ({
+              path: grandChild.path,
+              title: grandChild.title,
+            })),
+          }),
+      }));
+    }
+
+    return menuItem;
+  });
+};
+
+// Get Menu Data from API
+async function getMenu() {
+  const result = await axiosPost("/api/menus/sidebar/", {
+    url: "/users/config/test",
+  });
+
+  const apiMenuItems = mapApiDataToMenu(result.data);
+
+  console.log(apiMenuItems);
+  return apiMenuItems;
+}
+
+getMenu();
+
+// Create Menu Context
+const MenuContext = createContext();
+
+// Menu Provider Component
+export function MenuProvider({ children }) {
+  const [menu, setMenu] = useState(initialMenuData);
+
+  useEffect(() => {
+    async function fetchMenu() {
+      try {
+        const menuData = await getMenu();
+        setMenu(menuData);
+      } catch (error) {
+        console.error("Failed to load menu:", error);
+        // Fallback to initial menu data on error
+        setMenu(initialMenuData);
+      }
+    }
+
+    fetchMenu();
+  }, []);
+
+  return (
+    <MenuContext.Provider value={{ menu, setMenu }}>
+      {children}
+    </MenuContext.Provider>
+  );
+}
+
+// Custom hook to use menu
+export function useMenu() {
+  const context = useContext(MenuContext);
+  if (!context) {
+    throw new Error("useMenu must be used within a MenuProvider");
+  }
+  return context;
+}
+
+// Default export for backward compatibility (returns initial data)
+export default initialMenuData;
