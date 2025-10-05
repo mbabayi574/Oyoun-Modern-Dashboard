@@ -152,16 +152,22 @@ function Landing() {
                 <div className="row g-3 g-lg-5">
                   {section.menus.length > 0 &&
                     section.menus.map((menu) => (
-                      <div className="col-xl-3 col-lg-4 col-sm-6">
-                        <img
-                          src={menu.image_url}
-                          className="shadow d-block mw-100 cursor-pointer"
-                          onClick={() => console.log("Clicked")}
-                        />
-                        <div className="text-center my-3 text-body fw-bold">
-                          {menu.name}
+                      <a
+                        href={menu.url}
+                        target="_self"
+                        rel="noopener noreferrer"
+                      >
+                        <div className="col-xl-3 col-lg-4 col-sm-6">
+                          <img
+                            src={menu.image_url}
+                            className="shadow d-block mw-100 cursor-pointer"
+                            onClick={() => console.log("Clicked")}
+                          />
+                          <div className="text-center my-3 text-body fw-bold">
+                            {menu.name}
+                          </div>
                         </div>
-                      </div>
+                      </a>
                     ))}
                 </div>
                 <div className="container-xxl px-3 px-lg-5">
